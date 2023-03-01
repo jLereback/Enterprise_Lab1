@@ -5,23 +5,30 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 
-import java.util.List;
-
 @ApplicationScoped
 @Transactional
 public class CountryRepository {
-
     @PersistenceContext
     EntityManager entityManager;
 
-    public List<Country> findAll(){
-        var query = entityManager.createQuery("select c from Country c");
-        return (List<Country>) query.getResultList();
+    public Country getCountry(Long id){
+        return (entityManager.find(Country.class, id));
     }
 
-    public List<Country> findAllByName(String name) {
-        var query = entityManager.createQuery("select c from Country c where c.name like :name");
-        query.setParameter("name", name);
-        return (List<Country>) query.getResultList();
+    public void addCountry(Country country){
+        entityManager.persist(country);
+    }
+
+    public void updateCountry(Long id, String change){
+        Country country = entityManager.find(Country.class, id);
+        if (change.length() == 2)
+            country.setShortening(change);
+        else
+            country.setName(change);
+    }
+
+    public void removeCountry(Long id) {
+        Country country = entityManager.find(Country.class, id);
+        entityManager.remove(country);
     }
 }

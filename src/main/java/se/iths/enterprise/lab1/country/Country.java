@@ -15,6 +15,10 @@ public class Country {
     @Size(min = 4, max = 56)
     private String name;
 
+    @Column
+    @NotNull(message = "shortening can't be null")
+    @Size(min = 2, max = 2)
+    private String shortening;
 
     public Long getId() {
         return id;
@@ -30,5 +34,13 @@ public class Country {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getShortening() {
+        return shortening;
+    }
+
+    public void setShortening(String shortening) {
+        this.shortening = shortening;
     }
 }

@@ -4,12 +4,15 @@ public class CountryDto {
     private Long id;
     private String countryName;
 
+    private String shortening;
+
     public CountryDto() {
     }
 
-    public CountryDto(Long id, String dishName) {
+    public CountryDto(Long id, String countryName, String shortening) {
         this.id = id;
-        this.countryName = dishName;
+        this.countryName = countryName;
+        this.shortening = shortening;
     }
 
     public Long getId() {
@@ -26,5 +29,13 @@ public class CountryDto {
 
     public void setCountryName(String countryName) {
         this.countryName = countryName;
+    }
+
+    public String getShortening() {
+        return shortening;
+    }
+
+    public void setShortening(String shortening) {
+        this.shortening = shortening;
     }
 }
