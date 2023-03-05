@@ -1,6 +1,9 @@
 package se.iths.enterprise.lab1.country;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -10,13 +13,11 @@ public class Country {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    @NotNull(message = "name can't be null")
+    @NotNull(message = "Null not allowed for name")
     @Size(min = 4, max = 56)
     private String name;
 
-    @Column
-    @NotNull(message = "shortening can't be null")
+    @NotNull(message = "Null not allowed for shortening")
     @Size(min = 2, max = 2)
     private String shortening;
 
