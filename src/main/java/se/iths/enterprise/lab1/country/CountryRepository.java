@@ -5,14 +5,27 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 
+import java.util.List;
+import java.util.Optional;
+
 @ApplicationScoped
 @Transactional
 public class CountryRepository {
     @PersistenceContext
     EntityManager entityManager;
 
+    @SuppressWarnings("unchecked")
+    public List<Country> findAll(){
+        var query = entityManager.createQuery("SELECT c FROM Country c");
+        return (List<Country>) query.getResultList();
+    }
+
+    public Optional<Country> findOne(Long id){
+        return Optional.ofNullable(entityManager.find(Country.class, id));
+    }
+
     public Country getCountry(Long id){
-        return (entityManager.find(Country.class, id));
+        return entityManager.find(Country.class, id);
     }
 
     public void addCountry(Country country){
