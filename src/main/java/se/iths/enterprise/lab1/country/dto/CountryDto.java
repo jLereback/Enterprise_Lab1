@@ -1,4 +1,6 @@
-package se.iths.enterprise.lab1.country;
+package se.iths.enterprise.lab1.country.dto;
+
+import se.iths.enterprise.lab1.country.Country;
 
 public class CountryDto {
     private Long id;
@@ -9,10 +11,10 @@ public class CountryDto {
     public CountryDto() {
     }
 
-    public CountryDto(Long id, String countryName, String shortening) {
-        this.id = id;
-        this.countryName = countryName;
-        this.shortening = shortening;
+    public CountryDto(Country country) {
+        this.id = country.getId();
+        this.countryName = country.getName();
+        this.shortening = country.getShortening();
     }
 
     public Long getId() {
